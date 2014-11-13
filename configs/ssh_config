@@ -1,0 +1,25 @@
+Host hpc
+  HostName hpc.nyu.edu
+  User YOUR_NETID
+
+Host hpctunnel
+  HostName hpc.nyu.edu
+  ForwardX11 yes
+  LocalForward 8023 mercer.es.its.nyu.edu:22
+  LocalForward 8024 mercer1.es.its.nyu.edu:22
+  User YOUR_NETID
+
+Host mercer
+  HostName localhost
+  Port 8023
+  ForwardX11 yes
+  StrictHostKeyChecking no
+  User YOUR_NETID
+
+Host mercer1
+  HostName localhost
+  Port 8024
+  ForwardX11 yes
+  StrictHostKeyChecking no
+  User YOUR_NETID
+
