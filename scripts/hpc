@@ -15,7 +15,7 @@ LOGIN_NAME=mercer
 MAX_STEPS=10
 SLEEP_TIME=0.25
 
-screen -dmS ${SCREEN_NAME} -l bash --login run-one ssh ${TUNNEL_NAME}
+screen -dmS ${SCREEN_NAME} -l bash --login run-one ssh -X ${TUNNEL_NAME}
 
 SUCCESS=0
 
@@ -38,7 +38,7 @@ done
 if [ 0 -eq ${SUCCESS} ]; then
     echo Could not establish tunnel connection. Aborting.
 else
-    ssh ${LOGIN_NAME}
+    ssh -X ${LOGIN_NAME}
 fi
 
 screen -S ${SCREEN_NAME} -X quit
