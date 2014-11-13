@@ -8,13 +8,37 @@
 # Keyless authentication is crucial here also.
 #  
 
-SCREENNAME=hpctunnel
-TUNNELNAME=hpctunnel
-LOGINNAME=mercer
+SCREEN_NAME=hpctunnel
+TUNNEL_NAME=hpctunnel
+TUNNEL_PORT=8023
+LOGIN_NAME=mercer
+MAX_STEPS=10
+SLEEP_TIME=0.25
 
-screen -dmS ${SCREENNAME} -l bash --login run-one ssh ${TUNNELNAME}
+screen -dmS ${SCREEN_NAME} -l bash --login run-one ssh ${TUNNEL_NAME}
 
-sleep 0.5
-ssh ${LOGINNAME}
+SUCCESS=0
 
-screen -S ${SCREENNAME} -X quit
+for i in `seq ${MAX_STEPS}` ; do
+    
+    echo Testing for connection... 
+
+    netstat -lnt |grep 127.0.0.1:${TUNNEL_PORT} > /dev/null
+    
+    if [ 0 -eq $? ]; then
+        echo Connection established.
+        SUCCESS=1
+        break
+    fi
+
+    sleep ${SLEEP_TIME}
+
+done
+
+if [ 0 -eq ${SUCCESS} ]; then
+    echo Could not establish tunnel connection. Aborting.
+else
+    ssh ${LOGIN_NAME}
+fi
+
+screen -S ${SCREEN_NAME} -X quit
