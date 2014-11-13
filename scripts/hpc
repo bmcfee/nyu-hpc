@@ -1,0 +1,20 @@
+#!/bin/bash
+# Using the ssh tunnel instructions from here:
+#   https://wikis.nyu.edu/display/NYUHPC/SSH+tunneling+overview
+# NB: you need to disable strict host key checking for this to work,
+# otherwise you get a new key every time a tunnel is instantiated,
+# and the connection fails.
+#
+# Keyless authentication is crucial here also.
+#  
+
+SCREENNAME=hpctunnel
+TUNNELNAME=hpctunnel
+LOGINNAME=mercer
+
+screen -dmS ${SCREENNAME} -l bash --login run-one ssh ${TUNNELNAME}
+
+sleep 0.5
+ssh ${LOGINNAME}
+
+screen -S ${SCREENNAME} -X quit
