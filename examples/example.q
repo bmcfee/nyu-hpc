@@ -8,7 +8,7 @@
 #PBS -j oe
 
 module purge
-module add mpi4py scikit-learn theano pytables
+module add mpi4py
 
 # Needed environment variables.
 # Locations.
