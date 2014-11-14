@@ -13,7 +13,7 @@ module add mpi4py
 # Needed environment variables.
 # Locations.
 export SRCDIR=$HOME/git/nyu-hpc/examples
-export RUNDIR=/work/$HOME/example
+export RUNDIR=results_ex
 # export PROFILEDIR=$RUNDIR/profile
 export PROFILEDIR=$HOME/.config/ipython/profile_mpi
 mkdir -p $RUNDIR
