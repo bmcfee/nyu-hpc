@@ -7,21 +7,44 @@ Helper utilities for interacting with hpc.nyu.edu.  This includes things like:
 * Job deployment
 * Fabulous prizes
 
+
 Tunneling
 =========
 Probably, you'll want to fork this project and modify the scripts and configs for your exact setup.
 
 
-IPython.Parallel
-================
+Python environment
+==================
 
-I'll assume that all parallel code will be written using IPython.
+Once you're into HPC, you'll need to set up a sane python environment.
 
-To make this work, you'll first need to generate a profile by saying
+* First, you'll need to load the python module:
+
+      module purge
+      module add python
+
+* Next, to make any of the IPython parallelism work, you'll need to install ZMQ.
+
+  This can be done by first installing `pip` by following 
+  [these instructions](https://pip.pypa.io/en/latest/installing.html).
+
+* You'll need to add `~/.local/bin` to your `$PATH` environment variable by 
+  editing `~/.bash_profile`.
+
+* Finally, install the `zmq` module by saying
+
+      pip install pyzmq
+
+* Then, add the `mpi4py` module
+
+      module add mpi4py
+
+  and create an IPython cluster profile:
 
     ipython profile create --parallel --profile=mpi
 
-and then modify `~/.ipython/profile_mpi/ipcluster_config.py` to include the line
+  and then modify `~/.ipython/profile_mpi/ipcluster_config.py` to include the line
 
     c.IPClusterEngines.engine_launcher_class = 'MPIEngineSetLauncher' 
+
 
