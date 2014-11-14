@@ -36,7 +36,7 @@ Once you're into HPC, you'll need to set up a sane python environment.
 * Finally, install the `zmq` module by saying
 
       ```
-      pip install pyzmq
+      pip install --user pyzmq
       ```
 
 * Then, add the `mpi4py` module
