@@ -20,8 +20,10 @@ Once you're into HPC, you'll need to set up a sane python environment.
 
 * First, you'll need to load the python module:
 
+      ```
       module purge
       module add python
+      ```
 
 * Next, to make any of the IPython parallelism work, you'll need to install ZMQ.
 
@@ -33,18 +35,26 @@ Once you're into HPC, you'll need to set up a sane python environment.
 
 * Finally, install the `zmq` module by saying
 
+      ```
       pip install pyzmq
+      ```
 
 * Then, add the `mpi4py` module
 
+      ```
       module add mpi4py
+      ```
 
   and create an IPython cluster profile:
 
-    ipython profile create --parallel --profile=mpi
+      ```
+      ipython profile create --parallel --profile=mpi
+      ```
 
   and then modify `~/.ipython/profile_mpi/ipcluster_config.py` to include the line
 
-    c.IPClusterEngines.engine_launcher_class = 'MPIEngineSetLauncher' 
+      ```
+      c.IPClusterEngines.engine_launcher_class = 'MPIEngineSetLauncher' 
+      ```
 
 
