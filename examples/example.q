@@ -13,13 +13,14 @@ module add mpi4py
 # Needed environment variables.
 # Locations.
 export SRCDIR=$HOME/git/nyu-hpc/examples
-export RUNDIR=results_ex
-export PROFILEDIR=$RUNDIR/profile
+export RUNDIR=/work/$HOME/example
+# export PROFILEDIR=$RUNDIR/profile
+export PROFILEDIR=$HOME/.config/ipython/profile_mpi
 mkdir -p $RUNDIR
 cd $RUNDIR
 
 # Set up and start the IPython cluster.
-cp -r $HOME/.config/ipython/profile_mpi $PROFILEDIR
+# cp -r $HOME/.config/ipython/profile_mpi $PROFILEDIR
 ipcluster start -n $PBS_NP --profile-dir=$PROFILEDIR &> ipcluster.log &
 
 sleep 5
