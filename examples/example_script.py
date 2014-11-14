@@ -39,9 +39,9 @@ if __name__ == "__main__":
     view = c.load_balanced_view()
     view.block = True
 
-    results = jobs.map(demo, range(128))
+    results = view.map(demo, range(128))
 
-    print results
+    print(results)
 
 #     jobs = [(i, pool.apply(demo, i)) for i in range(128)]
 
