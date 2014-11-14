@@ -35,10 +35,10 @@ for i in `seq ${MAX_STEPS}` ; do
 
 done
 
-if [ 0 -eq ${SUCCESS} ]; then
-    echo Could not establish tunnel connection. Aborting.
-else
+if [ ${SUCCESS} ]; then
     ssh -X ${LOGIN_NAME}
+else
+    echo Could not establish tunnel connection. Aborting.
 fi
 
 screen -S ${SCREEN_NAME} -X quit
