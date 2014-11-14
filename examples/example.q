@@ -1,7 +1,7 @@
 #!/bin/bash
 #PBS -l nodes=3:ppn=4
-#PBS -l walltime=12:00:00
-#PBS -l mem=350GB
+#PBS -l walltime=1:00:00
+#PBS -l mem=1GB
 #PBS -N demo_script
 #PBS -m ae
 #PBS -M brian.mcfee@nyu.edu
