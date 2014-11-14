@@ -19,7 +19,7 @@ mkdir -p $RUNDIR
 cd $RUNDIR
 
 # Set up and start the IPython cluster.
-cp -r $HOME/.ipython/profile_mpi $PROFILEDIR
+cp -r $HOME/.config/ipython/profile_mpi $PROFILEDIR
 ipcluster start -n $PBS_NP --profile-dir=$PROFILEDIR &> ipcluster.log &
 
 sleep 5
