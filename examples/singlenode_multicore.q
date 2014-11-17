@@ -20,5 +20,5 @@ cd $RUNDIR
 # Set up and start the IPython cluster.
 env |sort &> env.log
 
-python $SRCDIR/multinode_multicore.py --profile-dir $PROFILEDIR &> output.log
+python $SRCDIR/singlenode_multicore.py -n $PBS_NP -v 3 &> output.log
 
