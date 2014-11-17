@@ -13,7 +13,7 @@ TUNNEL_NAME=hpctunnel
 TUNNEL_PORT=8023
 LOGIN_NAME=mercer
 MAX_STEPS=10
-SLEEP_TIME=0.25
+SLEEP_TIME=0.5
 
 screen -dmS ${SCREEN_NAME} -l bash --login run-one ssh -X ${TUNNEL_NAME}
 

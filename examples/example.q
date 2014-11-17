@@ -1,5 +1,6 @@
 #!/bin/bash
-#PBS -l nodes=3:ppn=4
+## PBS -l nodes=3:ppn=4
+#PBS -l nodes=2:ppn=2 -W x=nmatchpolicy:exactnode
 #PBS -l walltime=1:00:00
 #PBS -l mem=1GB
 #PBS -N demo_script
