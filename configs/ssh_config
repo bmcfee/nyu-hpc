@@ -13,13 +13,13 @@ Host mercer
   HostName localhost
   Port 8023
   ForwardX11 yes
-  StrictHostKeyChecking no
+  HostKeyAlias mercer
   User YOUR_NETID
 
 Host mercer1
   HostName localhost
   Port 8024
   ForwardX11 yes
-  StrictHostKeyChecking no
+  HostKeyAlias mercer1
   User YOUR_NETID
 
