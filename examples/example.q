@@ -22,7 +22,7 @@ cd $RUNDIR
 
 # Set up and start the IPython cluster.
 # cp -r $HOME/.config/ipython/profile_mpi $PROFILEDIR
-ipcluster start -n $PBS_NP --profile-dir=$PROFILEDIR &> ipcluster.log &
+ipcluster start -n $PBS_NP --profile-dir=$PROFILEDIR --engines=MPI &> ipcluster.log &
 
 sleep 5
 for (( try=0; try < 100; ++try )); do
