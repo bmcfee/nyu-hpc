@@ -20,5 +20,8 @@ cd $RUNDIR
 # Set up and start the IPython cluster.
 env |sort &> env.log
 
-python $SRCDIR/singlenode_multicore.py -n $PBS_NP -v 3 &> output.log
+python $SRCDIR/singlenode_multicore.py \
+                        --num_jobs $PBS_NP \
+                        -v 3 \
+    &> output.log
 
