@@ -21,12 +21,13 @@ mkdir -p $RUNDIR
 cd $RUNDIR
 
 # Set up and start the IPython cluster.
-env &> env.log
+env |sort &> env.log
 cp -r $HOME/.config/ipython/profile_mpi $PROFILEDIR
 ipcluster start -n $PBS_NP \
                 --profile-dir=$PROFILEDIR \
                 --controller=MPI \
-                --engines=MPI &> ipcluster.log &
+                --engines=MPI \
+    &> ipcluster.log &
 
 sleep 5
 for (( try=0; try < 100; ++try )); do
@@ -39,7 +40,7 @@ done
 
 if (( success )); then
     # Run the analysis.
-    python $SRCDIR/example_script.py --profile-dir $PROFILEDIR &> output.log
+    python $SRCDIR/multinode_multicore.py --profile-dir $PROFILEDIR &> output.log
 else
     echo "Server never started" &> output.log
 fi
