@@ -21,8 +21,13 @@ mkdir -p $RUNDIR
 cd $RUNDIR
 
 # Set up and start the IPython cluster.
+env &> env.log
 cp -r $HOME/.config/ipython/profile_mpi $PROFILEDIR
-ipcluster start -n $PBS_NP --profile-dir=$PROFILEDIR --engines=MPI &> ipcluster.log &
+ipcluster start -n $PBS_NP \
+                --profile-dir=$PROFILEDIR \
+                --engines=MPI \
+                --log-to-file ipcluster.log \
+                --daemonize
 
 sleep 5
 for (( try=0; try < 100; ++try )); do
