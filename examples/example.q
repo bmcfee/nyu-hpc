@@ -14,7 +14,7 @@ module add mpi4py
 # Needed environment variables.
 # Locations.
 export SRCDIR=$HOME/git/nyu-hpc/examples
-export RUNDIR=results_ex
+export RUNDIR=$HOME/results_ex
 export PROFILEDIR=$RUNDIR/profile
 # export PROFILEDIR=$HOME/.config/ipython/profile_mpi
 mkdir -p $RUNDIR
@@ -25,9 +25,8 @@ env &> env.log
 cp -r $HOME/.config/ipython/profile_mpi $PROFILEDIR
 ipcluster start -n $PBS_NP \
                 --profile-dir=$PROFILEDIR \
-                --engines=MPI \
-                --log-to-file ipcluster.log \
-                --daemonize
+                --controller=MPI \
+                --engines=MPI &> ipcluster.log &
 
 sleep 5
 for (( try=0; try < 100; ++try )); do
