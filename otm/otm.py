@@ -178,7 +178,7 @@ def process_arguments(args):
                         default=None,
                         help='Path to the PBS script template')
 
-    parser.add_agrument('--gpu',
+    parser.add_argument('--gpu',
                         dest='gpu',
                         default=False,
                         action='store_true',
