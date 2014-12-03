@@ -61,7 +61,7 @@ def mktmp(**kwargs):
     return handle, filename
 
 
-def create_qfile(tstr):
+def create_qfile(tstr, outfile=None):
     '''Save the template file'''
 
     # First, check to see that we have an otm directory
@@ -80,9 +80,13 @@ def create_qfile(tstr):
                                                              timestamp.minute,
                                                              timestamp.second)
     # Create a temporary file
-    handle, qname = mktmp(dir=otmdir,
-                          prefix=prefix,
-                          suffix='{}q'.format(os.extsep))
+    if outfile is None:
+        handle, qname = mktmp(dir=otmdir,
+                              prefix=prefix,
+                              suffix='{}q'.format(os.extsep))
+
+    else:
+        handle, qname = open(outfile, 'w'), outfile
 
     # Dump the rendered template
     handle.write(tstr)
@@ -111,7 +115,7 @@ def main(**params):
 
     tstr = template.render(**params)
 
-    qfile = create_qfile(tstr)
+    qfile = create_qfile(tstr, params['outfile'])
 
     print('Rendered PBS script to {:s}'.format(qfile))
 
@@ -184,6 +188,13 @@ def process_arguments(args):
                         action='store_true',
                         help='Require a GPU on the node')
 
+    parser.add_argument('-o', '--outfile',
+                        dest='outfile',
+                        default=None,
+                        type=unicode,
+                        help='Path to store the job script. '
+                             'If left unspecified, a temporary file will be created.')
+
     parser.add_argument('cmd',
                         nargs='+',
                         type=str,
@@ -203,5 +214,7 @@ def process_arguments(args):
 if __name__ == '__main__':
 
     parameters = process_arguments(sys.argv[1:])
+
+    parameters['CMDLINE'] = ' '.join(sys.argv)
 
     main(**parameters)

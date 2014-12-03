@@ -9,6 +9,9 @@
 #PBS -M {{ email }}
 {% endif %}
 
+# Built by otm.py with the following command line:
+# {{ CMDLINE }}
+
 # Clear the modules
 module purge
 
