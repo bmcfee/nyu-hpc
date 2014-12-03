@@ -188,12 +188,19 @@ def process_arguments(args):
                         action='store_true',
                         help='Require a GPU on the node')
 
+    parser.add_argument('--num-gpu-cores',
+                        dest='num_gpu_cores',
+                        default=1,
+                        type=int,
+                        help='Number of GPU cores to request. Requires --gpu.')
+
     parser.add_argument('-o', '--outfile',
                         dest='outfile',
                         default=None,
                         type=unicode,
                         help='Path to store the job script. '
-                             'If left unspecified, a temporary file will be created.')
+                             'If left unspecified, a temporary '
+                             'file will be created.')
 
     parser.add_argument('cmd',
                         nargs='+',

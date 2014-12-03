@@ -1,7 +1,11 @@
 #!/bin/bash
 #PBS -m ae
 #PBS -j oe
+{% if gpu %}
+#PBS -l nodes={{ num_nodes }}:ppn={{ num_cores }}:gpus={{ num_gpu_cores }}
+{% else %}
 #PBS -l nodes={{ num_nodes }}:ppn={{ num_cores }}
+{% endif %}
 #PBS -l walltime={{ run_time }}
 #PBS -l mem={{ memory }}
 #PBS -N {{ name }}
@@ -10,7 +14,7 @@
 {% endif %}
 
 # Built by otm.py with the following command line:
-# {{ CMDLINE }}
+# {{ CMDLINE|wordwrap(width=60, break_long_words=False, wrapstring=' \\\n# \t')}}
 
 # Clear the modules
 module purge
@@ -30,3 +34,4 @@ env |sort &> env.log
 
 # Execute the command
 {{ cmds }}
+
