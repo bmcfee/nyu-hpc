@@ -21,7 +21,7 @@ cd $RUNDIR
 
 # Set up and start the IPython cluster.
 env |sort &> env.log
-cp -r $HOME/.config/ipython/profile_mpi $PROFILEDIR
+cp -a $HOME/.config/ipython/profile_mpi $PROFILEDIR
 ipcluster start -n $PBS_NP \
                 --profile-dir=$PROFILEDIR \
                 --controller=MPI \
